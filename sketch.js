@@ -13,45 +13,34 @@ function preload()
 }
 
 function setup() {
-	createCanvas(1600, 700);
+	createCanvas(1200, 700);
 
 
 	engine = Engine.create();
 	world = engine.world;
 
-	//Create the Bodies Here.
-	dustbin1=new Paper(500,510,60);
-	paper=new Paper(300,200,40);
-	ground=new Ground(800,600,1600,20);
+	ground=new Ground(width/2,height,width,40); //x=1600/2, y=700, width = 1600, height = 40
 
-	
-	//dustbin2=new Dustbin(1000,510,20,200);
-	//dustbin3=new Dustbin(1100,600,200,20);
-	
-
-	Engine.run(engine);
-  
+	dustbin1=new Dustbin(width-200, height-30, 150, 20); //create a bin towards right and bottom side of the canvas
+	paper=new Paper(300,200,40);	
+	Engine.run(engine);  //update engine
 }
 
 
 function draw() {
-
-Engine.update(engine);
+  //Engine.update(engine);  Engine.run() is for the same.
   rectMode(CENTER);
-  background(255);
+  background("lightgreen");
+  dustbin1.display();
   paper.display();
   ground.display();
+}
 
-  dustbin1.display();
-  //dustbin2.display();
-  //dustbin3.display();
-
-  
-
-  
-
-  
- 
+function keyPressed(){
+	if(keyCode===32|| keyCode===UP_ARROW){
+		Matter.Body.applyForce(paper.body,paper.body.position,{x:90,y:-55})
+		
+	}
 }
 
 
