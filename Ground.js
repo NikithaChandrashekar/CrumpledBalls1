@@ -18,14 +18,14 @@ class Ground{
 
     display(){
 
-        var pos=this.body.position;
+    var pos=this.body.position;
 
     push();
     translate(pos.x,pos.y);
     fill("rgb(102, 255, 217)");
     rectMode(CENTER);
     rect(0,0,this.w,this.h);
-
+    pop (); //added by leena
 
             
 

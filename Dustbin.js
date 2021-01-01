@@ -1,90 +1,32 @@
-/*class Dustbin{
+class Dustbin{
     constructor(x, y, width, height) {
         var options = {
            isStatic:true
         }
         this.body = Bodies.rectangle(x, y, width, height, options);
+        this.side1 = Bodies.rectangle(x-width/2, y, 20, 150, options); // left wall's x position in relation with the bottom wall.
+        this.side2 = Bodies.rectangle(x+width/2, y, 20, 150, options); //right wall's x position in relation with the bottom wall.
         this.width = width;
         this.height = height;
         
         World.add(world, this.body);
+        World.add(world,this.side1);
+        World.add(world,this.side2);
       }
       display(){
-        var pos =this.body.position;
+        var pos1 =this.body.position;
+        var pos2 =this.side1.position;
+        var pos3 =this.side2.position;
         var angle = this.body.angle;
         push();
-        translate(pos.x, pos.y);
-        rotate(angle);
+        //translate(pos.x, pos.y);  It is a static object, so no need of translation and rotation
+        //rotate(angle);
         rectMode(CENTER); 
-        fill("white");
-        rect(0, 0, this.width, this.height);
+        fill("red");
+        rect(pos1.x, pos1.y, this.width, this.height);
+        rect(pos2.x, pos2.y,20,150);
+        rect(pos3.x, pos3.y,20,150);
         pop();
       }
-}*/
-
-/*class Dustbin{
-
-  constructor(x,y,width,height){
-      var options={
-
-          isStatic:false,
-          restitution:0.3,
-          friction:0.5,
-          density:1.2
-
-      }
-      this.x=x;
-      this.y=y;
-      this.width=width;
-      this.height=height;
-      this.body=Bodies.rectangle(this.x,this.y,(this.r-20)/2,options)
-      World.add(world,this.body)
-  }
-display(){
-
-var pos=this.body.position;
-console.log(this.body);
-
- push();
- translate(pos.x, pos.y);
- rectMode(CENTER);
- fill(rgb(255, 204, 204));
- //ellipse(0,0,this,this.r)
- pop();
-
 }
 
-
-}*/
-class Dustbin{
-
-  constructor(x,y,r){
-      var options={
-
-          isStatic:false,
-          restitution:0.3,
-          friction:0.5,
-          density:1.2
-
-      }
-      this.x=x;
-      this.y=y;
-      this.r=r;
-      this.body=Bodies.circle(this.x,this.y,(this.r-20)/2,options)
-      World.add(world,this.body)
-  }
-display(){
-
-var pos=this.body.position;
-
- push();
- translate(pos.x, pos.y);
- rectMode(CENTER);
- fill("rgb(255, 204, 204)");
- ellipse(0,0,this.r,this.r)
- pop();
-
-}
-
-
-}
